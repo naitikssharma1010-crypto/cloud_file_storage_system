@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CloudVault</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<!-- ==================================================
+     AUTHENTICATION PAGE
+================================================== -->
+
+<div id="authPage" class="auth-page">
+
+    <div class="auth-left">
+
+        <div class="cloud-logo">
+            ☁
+        </div>
+
+        <h1>CloudVault</h1>
+
+        <p>
+            Your personal cloud storage.
+            Store, manage and access your files securely.
+        </p>
+
+        <div class="features">
+
+            <div>
+                ✓ Secure file storage
+            </div>
+
+            <div>
+                ✓ 100 MB personal storage
+            </div>
+
+            <div>
+                ✓ Fast drag & drop uploads
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="auth-card">
+
+        <div class="auth-tabs">
+
+            <button
+                id="loginTab"
+                class="auth-tab active"
+            >
+                Login
+            </button>
+
+            <button
+                id="signupTab"
+                class="auth-tab"
+            >
+                Sign Up
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form id="loginForm">
+
+            <h2>Welcome Back</h2>
+
+            <p class="form-description">
+                Login to access your cloud storage.
+            </p>
+
+            <label>
+                Username or Email
+
+                <input
+                    type="text"
+                    id="loginIdentifier"
+                    placeholder="Enter username or email"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Password
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- SIGNUP -->
+
+        <form
+            id="signupForm"
+            class="hidden"
+        >
+
+            <h2>Create Account</h2>
+
+            <p class="form-description">
+                Create your personal cloud account.
+            </p>
+
+
+            <label>
+                Username
+
+                <input
+                    type="text"
+                    id="signupUsername"
+                    placeholder="Choose username"
+                    minlength="3"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Email
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter email"
+                    required
+                >
+
+            </label>
+
+
+            <label>
+                Password
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Minimum 8 characters"
+                    minlength="8"
+                    required
+                >
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div
+            id="authMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
+
+<div
+    id="dashboardPage"
+    class="dashboard hidden"
+>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="small-logo">
+                ☁
+            </div>
+
+            <strong>
+                CloudVault
+            </strong>
+
+        </div>
+
+
+        <nav>
+
+            <a class="nav-link active">
+                📁
+                My Files
+            </a>
+
+            <a
+                class="nav-link"
+                id="navUpload"
+            >
+                ⬆
+                Upload
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="storage-box">
+
+                <div class="storage-header">
+
+                    <span>
+                        Storage
+                    </span>
+
+                    <strong id="storageText">
+                        0 MB / 100 MB
+                    </strong>
+
+                </div>
+
+
+                <div class="storage-track">
+
+                    <div
+                        id="storageBar"
+                        class="storage-bar"
+                    ></div>
+
+                </div>
+
+                <small>
+                    Personal storage
+                </small>
+
+            </div>
+
+
+            <div class="user-info">
+
+                <div
+                    id="userAvatar"
+                    class="avatar"
+                >
+                    U
+                </div>
+
+                <div>
+
+                    <strong id="usernameDisplay">
+                        User
+                    </strong>
+
+                    <small id="emailDisplay">
+                        user@example.com
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+            >
+                Log Out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    My Files
+                </h1>
+
+                <p>
+                    Manage your personal cloud storage.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="search-box">
+
+                    🔍
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search files..."
+                    >
+
+                </div>
+
+
+                <button
+                    id="uploadButton"
+                    class="primary-button"
+                >
+                    + Upload
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- UPLOAD AREA -->
+
+        <section
+            id="uploadArea"
+            class="upload-area"
+        >
+
+            <div class="upload-icon">
+                ⬆
+            </div>
+
+            <h2>
+                Drop files here
+            </h2>
+
+            <p>
+                Drag and drop your files here
+                or choose files from your computer.
+            </p>
+
+            <button
+                id="chooseFilesButton"
+                class="secondary-button"
+            >
+                Choose Files
+            </button>
+
+            <input
+                id="fileInput"
+                type="file"
+                multiple
+                hidden
+            >
+
+        </section>
+
+
+        <!-- UPLOAD PROGRESS -->
+
+        <div
+            id="uploadProgressContainer"
+            class="upload-progress hidden"
+        >
+
+            <div class="progress-info">
+
+                <span id="uploadStatus">
+                    Uploading...
+                </span>
+
+                <strong id="uploadPercent">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div
+                    id="uploadProgress"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FILES -->
+
+        <section class="files-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        All Files
+                    </h2>
+
+                    <span id="fileCount">
+                        0 files
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="refreshButton"
+                    class="refresh-button"
+                >
+                    ↻
+                </button>
+
+            </div>
+
+
+            <div
+                id="emptyState"
+                class="empty-state"
+            >
+
+                <div class="empty-icon">
+                    ☁
+                </div>
+
+                <h3>
+                    No files yet
+                </h3>
+
+                <p>
+                    Upload your first file to get started.
+                </p>
+
+            </div>
+
+
+            <div
+                id="fileGrid"
+                class="file-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast hidden"
+></div>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>
